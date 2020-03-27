@@ -15,3 +15,9 @@ howto
     Repos must be less than 1 GB in file size.
     Websites must be less than 1 GB in file size.
     Monthly Bandwidth limit is 100 GB. We’ll bypass this later on.
+
+## Ref
+    มาใช้ Cloud Server ฟรีตลอดชีพกันเถอะ : https://bit.ly/2ydK0Ft
+    GCE vs EC2 : https://bit.ly/2xrHiMg
+    11 Best Hosting Platform : https://bit.ly/33MwXXi
+    5 Best Completely FREE Cloud Hosting Services : https://bit.ly/33ToUb5
