@@ -1,6 +1,6 @@
 # Github Pages
 
-เราสามารถบริการ web Frontend (html/css/js) ไว้บน github pages ฟรีตลอดชีพ ซึ่งมีข้อจำกัดบ้าง พวก limit ตามข้างล่างครับ
+เราสามารถบริการ web Frontend (html/css/js) ไว้บน github pages ฟรีตลอดชีพ ซึ่งมีข้อจำกัดบ้าง เช่น พื้นที่ 1GB, traffic ได้ 100GB ต่อเดือน
 
 github pages simple
     https://monthop.github.io/githubpages/
