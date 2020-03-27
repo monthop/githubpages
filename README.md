@@ -1,7 +1,7 @@
 # wpcovid
 
 github pages simple
-    http://monthop.github.io/wpcovid
+    https://monthop.github.io/wpcovid/index.html
 
 github pages React
     http://monthop.github.io/wpcovid/react/build
