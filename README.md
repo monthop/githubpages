@@ -6,7 +6,7 @@ github pages simple
     https://monthop.github.io/githubpages/
 
 github pages React
-    http://monthop.github.io/githubpages/react/build/
+    https://monthop.github.io/githubpages/react/build/
 
 howto
     https://pages.github.com/
