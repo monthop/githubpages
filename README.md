@@ -1,4 +1,6 @@
-# wpcovid
+# Github Pages
+
+เราสามารถเก็บ html/css/js ไว้บน github ฟรีตลอดชีพ ซึ่งมีข้อจำกัดบ้าง พวก limit ตามข้างล่างครับ
 
 github pages simple
     https://monthop.github.io/githubpages/
