@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<title>W3.JS</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<body>
+
+<div class="w3-container w3-green">
+<pre>
+โปรแกรม ช่วยรันสคริปอัตโนมัติ
+</pre>
+<div class="w3-container w3-yellow">
+<button onclick="doPlay(this,'auto');">โหมด : ควบคุมเอง</button>
+</div>
+<div id="qqNowDiv"></div>
+<button onclick="doPlay(this,'start');">กดเพื่อเริ่มเล่นอัตโนมัติหรือเล่นต่อ/เลื่อนแทรกไปข้างหน้า</button>
+<button onclick="doPlay(this,'pause');">กดเพื่อหยุดชั่วคราว/เลื่อนแทรกไปข้างหลัง</button>
+<pre>
+<div id="stream" class="w3-container w3-blue">
+
+<iframe id="myIframe" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+</div>
+</pre>
+
+หมายเหตุ : ทำได้สัก 10% ละครับ พวกภาพนิ่ง หรือ ตัวหนังสือ จะทะยอยใส่มาเรื่อยๆ จนสมบูรณ์ เพื่อให้แต่ละสาขาสามารถจัดทำสคริปไว้ล่วงหน้าได้
+
+</div>
+
+<script>
+
+/*
+<div class="w3-container">
+
+<p><button class="w3-btn w3-green" onclick="w3.toggleShow('#London')">Click to Toggle Hide/Show</button></p>
+
+<div id="London" class="w3-panel w3-red">
+  <h2>London</h2>
+  <p>London is the capital city of England.</p>
+</div>
+
+</div>
+*/
+
+// https://www.w3schools.com/w3js/
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+// https://www.npmjs.com/package/q
+// https://medium.com/@wavded/promises-in-node-js-with-q-22164f4d89e8
+// https://www.w3schools.com/jsref/jsref_length_array.asp
+// https://www.w3schools.com/w3css/w3css_colors.asp
+// https://www.w3schools.com/w3css/w3css_containers.asp
+// https://www.w3schools.com/jsref/met_win_cleartimeout.asp
+// https://www.w3schools.com/jsref/prop_html_innerhtml.asp
+
+
+var qq = [
+  {"time":4.09*60*1000,"url":"https://www.youtube.com/embed/_Zsr-xXAcZ8", "title":"1	เพลงอรุณทอแสง"},
+  {"time":1.35*60*1000,"url":"https://www.youtube.com/embed/c29VxS0RgPg", "title":"2	คำกล่าวบูชาพระรัตนตรัย"},
+  {"time":6.56*60*1000,"url":"https://www.youtube.com/embed/h0RaGmNPCT0", "title":"3	พิธีมอบตัวเป็นศิษย์"},
+  {"time":1.30*60*1000,"url":"https://www.youtube.com/embed/JFSEwxvw_PA", "title":"4	คำสัตย์ปฏิญาณ"},
+  {"time":23.12*60*1000,"url":"https://www.youtube.com/embed/w_ljuiBJ8ZU", "title":"5	วิริยังคมหาเถรประวัติ"},
+  {"time":26.45*60*1000,"url":"https://www.youtube.com/embed/hNTNAxVW-5o", "title":"6	สัมโมทนียกถาปฐมนิเทศ"},
+  {"time":27.12*60*1000,"url":"https://www.youtube.com/embed/TiNPUIDwuSE", "title":"7	พิธีเปิดหลักสูตรวิทันตสาสมาธิ"},
+  {"time":4.30*60*1000,"url":"https://www.youtube.com/embed/HbI_l-zx9Sg", "title":"8	วิธีเดินจงกรม"},
+]
+
+/*
+1	เพลงอรุณทอแสง	https://youtu.be/_Zsr-xXAcZ8
+2	คำกล่าวบูชาพระรัตนตรัย	https://youtu.be/c29VxS0RgPg
+3	พิธีมอบตัวเป็นศิษย์	https://youtu.be/h0RaGmNPCT0
+4	คำสัตย์ปฏิญาณ	https://youtu.be/JFSEwxvw_PA
+5	วิริยังคมหาเถรประวัติ	https://youtu.be/w_ljuiBJ8ZU
+6	สัมโมทนียกถาปฐมนิเทศ	https://youtu.be/hNTNAxVW-5o
+7	พิธีเปิดหลักสูตรวิทันตสาสมาธิ	https://youtu.be/TiNPUIDwuSE
+8	วิธีเดินจงกรม	https://youtu.be/HbI_l-zx9Sg
+9	วิธีนั่งสมาธิ	https://youtu.be/hZTUNntTkBY
+	นาฬิกาจับเวลา	https://sumana.org/clock/?openExternalBrowser=1
+10	บทสวดอธิษฐานก่อนเดินจงกรม	https://youtu.be/o0B6212q8wo
+11	บทสวดแผ่เมตตาหลังเดินจงกรม	https://youtu.be/0_DOyGbAPfo
+	นาฬิกาจับเวลา	https://sumana.org/clock/?openExternalBrowser=1
+12	บทสวดอธิษฐานก่อนนั่งสมาธิ	https://youtu.be/AM0o2bywjaM
+13	บทสวดแผ่เมตตาหลังนั่งสมาธิ	https://youtu.be/zQkscnSYO10
+	คำกล่าวบูชาพระรัตนตรัย	ตามหัวข้อ youtube # 2
+	บันทึกเวลาเรียน	สาขาสร้างเองจาก Google form
+14	วิริยังคมหาเถโรวาท	https://youtu.be/ToLV7T9aZoc
+*/
+
+var qqNow = 0;
+var qqStart = 0;
+var qqRun = false;
+var timeoutComponent;
+
+function delayPromise(num) {
+  return new Promise((resolve, reject) => {
+    timeoutComponent = setTimeout( function() {
+      resolve("Success!")
+    }, num) 
+  }) 
+}
+
+const myQQ = new Promise((resolve, reject) => {
+  qqNow = qqStart;
+  resolve('play');
+});
+
+function doContentYT(url) {
+/*<iframe width="560" height="315" src="https://www.youtube.com/embed/cLPtq9gZLUc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>*/
+  document.getElementById('myIframe').src = url;
+}
+
+async function myPlay(mm) {
+  console.log('===== กำลังเล่น =====')
+  console.log('qq len ',qq.length);
+  if(qq.length > qqNow) {
+    const {time,url,title} = qq[qqNow]
+    console.log('play ',qqNow)
+    console.log('iframe',url)
+    console.log('time',time)
+    doContentYT(url);
+    document.getElementById('qqNowDiv').innerHTML  = "<b>"+ title +"</b>";
+    qqNow++;
+    await delayPromise(time)
+    myPlay('next');
+  }else{
+    //resolve('end...');
+    console.log('จบ playlist');
+    return 'end...';
+  }
+}
+
+async function myPause(mm) {
+  qqNow--;
+  qqStart = qqNow
+  console.log('===== หยุดเล่น =====')
+  console.log('qq len ',qq.length);
+  console.log('การเล่นต่อ จะย้อนกลับไป playlist ที่ : ', qqStart)
+  const {time,url,title} = qq[qqNow]
+  document.getElementById('qqNowDiv').innerHTML  = "<b>"+ title +"</b>";
+  clearTimeout(timeoutComponent);
+}
+
+window.onload = function() {
+  console.log('body onload');
+  const {time,url,title} = qq[qqNow]
+  document.getElementById('qqNowDiv').innerHTML  = "<b>"+ title +"</b>";
+};
+document.body.onresize = function() {
+  console.log('body onresize');
+};
+
+function doPlay(me,action) {
+
+  if(action=='start') {
+    qqRun = true;
+    myQQ
+      .then(myPlay)
+      .catch(err => { 
+        console.log(err) 
+      });    
+  }else if(action=='pause') {
+    qqRun = false;
+    myPause();
+  }
+}
+
+</script>
+
+</body>
+</html>
